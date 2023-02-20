@@ -17,7 +17,7 @@ jobs:
     - name: Build the Docker image
       run: docker build -t rishabchauhan22/okok .
     - name: run test
-      run: docker run rishabchauhan22/okok  npm run test -- --coverage
+      run: docker run rishabchauhan22/okok  npm  test -- --coverage
   # test:
     
   #   runs-on: ubuntu-latest

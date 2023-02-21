@@ -19,7 +19,7 @@ jobs:
     # - name: run test
     #   run: docker run rishabchauhan22/okok  npm  test -- --coverage
     - name: Deploy to EB
-      uses: einaregilsson/beanstalk-deploy@v21
+      uses: einaregilsson/beanstalk-deploy@v20
       with:
         aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}

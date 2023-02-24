@@ -1,6 +1,7 @@
 ##  This is a github actions yaml file
 ##  This file will trigger github actions and deploy docker to Elastic Beanstalk
 ##  Rename the file to docker-image.yml to make it run
+##  And move it to ./.github/workflows folder
 
 name: Docker Image CI
 

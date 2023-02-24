@@ -1,0 +1,40 @@
+##  This is a github actions yaml file
+##  This file will trigger github actions and deploy docker to Elastic Beanstalk
+##  Rename the file to docker-image.yml to make it run
+
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Build the Docker image
+      uses: actions/checkout@v3
+     #  run: docker build -t rishabchauhan22/okok .
+    # - name: run test
+    #   run: docker run rishabchauhan22/okok  npm  test -- --coverage
+
+    - name: Generate zip
+      run: zip -r deploy.zip * -x "**node_modules**"
+
+
+
+    - name: Deploy to EB
+      uses: einaregilsson/beanstalk-deploy@v14
+      with:
+        aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        application_name: hello
+        environment_name: Hello-env
+        version_label: "hello-label-2"
+        region: ap-southeast-1
+        deployment_package: deploy.zip
